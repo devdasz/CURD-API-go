@@ -1,0 +1,99 @@
+<h1 id="curd-api-go">CURD-API-go</h1>
+<p>A CURD api based on Go lang. This is a example of movie library where one can get movie details For this project fake db is made with slice(like array). There are 5 basic operation in this example. One can get all movies list, Create a new movie, Update a existing movie by id, Read a movie by id, and Delete a movie by id.</p>
+<h2 id="get-movie-list">## Get movie list</h2>
+<p>Call a Get request to <strong>/movies</strong>.</p>
+<p>Client will get a list/array of json object like below.</p>
+<p><em>Server response</em></p>
+<pre><code>[
+    {
+        &quot;id&quot;: &quot;1&quot;,
+        &quot;isbn&quot;: &quot;438227&quot;,
+        &quot;title&quot;: &quot;Movie one&quot;,
+        &quot;director&quot;: {
+            &quot;firstname&quot;: &quot;jhon&quot;,
+            &quot;lastname&quot;: &quot;Doe&quot;
+        }
+    },
+    {
+        &quot;id&quot;: &quot;2&quot;,
+        &quot;isbn&quot;: &quot;45455&quot;,
+        &quot;title&quot;: &quot;Movie Two&quot;,
+        &quot;director&quot;: {
+            &quot;firstname&quot;: &quot;Steve&quot;,
+            &quot;lastname&quot;: &quot;Smith&quot;
+        }
+    }
+]</code></pre>
+<h2 id="create-a-new-movie">## Create a new movie</h2>
+<p>Call a POST request to <strong>/movie</strong> with below json object in body.</p>
+<pre><code>{
+        
+        &quot;isbn&quot;: &quot;438228&quot;,
+        &quot;title&quot;: &quot;Movie three&quot;,
+        &quot;director&quot;: {
+            &quot;firstname&quot;: &quot;jhon&quot;,
+            &quot;lastname&quot;: &quot;Doe&quot;
+        }
+}</code></pre>
+<p><strong>Note:</strong> id is not necessary to create a new movie as it will genereate a randoom movie name and you can check it via server response.</p>
+<p><em>Server response</em></p>
+<pre><code>{
+    &quot;id&quot;: &quot;131847&quot;,
+    &quot;isbn&quot;: &quot;438228&quot;,
+    &quot;title&quot;: &quot;Movie three&quot;,
+    &quot;director&quot;: {
+        &quot;firstname&quot;: &quot;jhon&quot;,
+        &quot;lastname&quot;: &quot;Doe&quot;
+    }
+}</code></pre>
+<h2 id="update-a-existing-movie">## Update a existing movie</h2>
+<p>Call a PUT request to <strong>/movie{id}</strong> with below json object in body.</p>
+<pre><code>{
+        
+        &quot;isbn&quot;: &quot;438227&quot;,
+        &quot;title&quot;: &quot;Movie one-Updated&quot;,
+        &quot;director&quot;: {
+            &quot;firstname&quot;: &quot;jhon&quot;,
+            &quot;lastname&quot;: &quot;Doe&quot;
+        }
+}</code></pre>
+<p><strong>Note:</strong> Partial update is not valid.</p>
+<p><em>Server response</em></p>
+<pre><code>{
+    &quot;id&quot;: &quot;727887&quot;,
+    &quot;isbn&quot;: &quot;438227&quot;,
+    &quot;title&quot;: &quot;Movie one-Updated&quot;,
+    &quot;director&quot;: {
+        &quot;firstname&quot;: &quot;jhon&quot;,
+        &quot;lastname&quot;: &quot;Doe&quot;
+    }
+}</code></pre>
+<h2 id="read-a-existing-movie-details">## Read a existing movie details</h2>
+<p>Call a Get request to <strong>/movie/{id}</strong> (here id is movie id).</p>
+<p>Client will get a json object like below.</p>
+<pre><code>{
+    &quot;id&quot;: &quot;1&quot;,
+    &quot;isbn&quot;: &quot;438227&quot;,
+    &quot;title&quot;: &quot;Movie one&quot;,
+    &quot;director&quot;: {
+        &quot;firstname&quot;: &quot;jhon&quot;,
+        &quot;lastname&quot;: &quot;Doe&quot;
+    }
+}</code></pre>
+<h2 id="delete-a-existing-movie">## Delete a existing movie</h2>
+<p>To delete a movie details , a Delete request should be called with id to <strong>/movie/{id}</strong> (here id is movie id.</p>
+<p>Server will response back with remaining movies list.</p>
+<p><em>Server response</em></p>
+<pre><code>[
+    {
+        &quot;id&quot;: &quot;2&quot;,
+        &quot;isbn&quot;: &quot;45455&quot;,
+        &quot;title&quot;: &quot;Movie Two&quot;,
+        &quot;director&quot;: {
+            &quot;firstname&quot;: &quot;Steve&quot;,
+            &quot;lastname&quot;: &quot;Smith&quot;
+        }
+    },
+  
+  
+]</code></pre>

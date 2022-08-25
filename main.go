@@ -102,6 +102,8 @@ func main() {
 	})
 
 	r := mux.NewRouter()
+	fileServer := http.FileServer(http.Dir("./static"))
+	r.Handle("/", fileServer)
 	r.HandleFunc("/movies", getMovies).Methods("GET")
 	r.HandleFunc("/movie/{id}", getMovie).Methods("GET")
 	r.HandleFunc("/movie", createMovie).Methods("POST")
